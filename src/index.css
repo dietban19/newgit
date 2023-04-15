@@ -209,7 +209,7 @@ button {
   #popup-top button:hover{
     background-color: #0276c4;
     color: #fff;
-  } */
+  } 
   #popup-top{
     display: flex;
     justify-content: flex-end;
@@ -424,7 +424,6 @@ button {
 }
 
 @media screen and (max-width: 440px) {
-@import url('https://unpkg.com/css.gg@2.0.0/icons/css/add.css');
 
 
 
@@ -484,7 +483,6 @@ button {
     max-width: 95vw;
     height: 99%;
   }
-
   
   #popup-button button{
     height: 80px;
