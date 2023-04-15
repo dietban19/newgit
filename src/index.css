@@ -1,4 +1,4 @@
-/*test*/
+
 body,
 h1,
 h2,
@@ -112,7 +112,6 @@ input {
 
 button {
   margin:10;
-  /* padding: 25px 10px; */
   font-size: 20px;
   cursor: pointer;
 }
@@ -217,7 +216,7 @@ button {
   }
 .popup-container{
 
-  /* outline: 2px solid red; */
+
   padding: 20px;
   z-index: 10000;
   position: fixed;
@@ -232,23 +231,22 @@ button {
   align-items: center;
   flex-direction: column;
   padding: 15px;
-  /* outline: 2px solid blue; */
+
 }
 .popup-info{
   padding: 15px;
-  /* outline: 2px solid green; */
+  
 }
 .popup-info .image-input{
-  /* outline: 3px solid pink; */
   display: flex;
   flex-direction: column;
   align-items: center;
 } 
 .popup-bottom{
-  /* outline: 2px solid orange; */
+  
 }
 .popup-bottom #popup-button{
-  /* outline: 4px solid red; */
+ 
   display: flex;
   justify-content: center;
   align-items: flex-end;
@@ -260,7 +258,7 @@ button {
   width: 100%;
 }
 #date-container{
-  /* outline: 4px solid green; */
+
   padding: 10px;
 }
 #input-name{
@@ -272,57 +270,7 @@ button {
   margin: 10px;
 }
 }
-/* 
 
-
-#popup-header{
-  display: flex;
-  justify-content: flex-end;
-}
-
-.popup-contents-container{
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-  border-radius: 10px;
-}
-
-#popup-contents{
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
-#popup-contents button{
-  padding: 25px 10px;
-  width: 800px;
-}
-#popup-contents-header{
-  padding: 50px;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
-
-.popup-button{
-  font-size: 35px;
-  margin: 50px;
-  padding: 10px 20px;
-  background-color: #f2f2f2;
-  color: #333;
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-.popup-button:hover{
-  background-color: #c3c3c3;
-  color: #fff;
-} */
-
-/* #choose-file{
-  display:none;
-} */
 #file{
   display: none;
 }
@@ -427,12 +375,13 @@ button {
 
 
 
+
   button{
     background-color: transparent;
     border: none;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     color: #0a82ff;
-    /* text-decoration: underline; */
+  
     cursor: pointer;
     padding: 0;
     margin: 0;
@@ -483,6 +432,7 @@ button {
     max-width: 95vw;
     height: 99%;
   }
+
   
   #popup-button button{
     height: 80px;
