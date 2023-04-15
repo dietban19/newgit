@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Outlet, useNavigate, Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import Obituary from "./Obituary";
+import { RiAddCircleLine } from "react-icons/ri";
 import axios from 'axios';
 import openai from 'openai';
 
@@ -107,6 +108,14 @@ function Layout() {
     setIsPopupOpen(false);
   };
   
+  useEffect(() => {
+    const body = document.querySelector("body");
+    if (isPopupOpen) {
+      body.classList.add("popup-open");
+    } else {
+      body.classList.remove("popup-open");
+    }
+  }, [isPopupOpen]);
   // const generateTransformedImageUrl = (publicId, effect) => {
   //   const baseUrl = "https://res.cloudinary.com/dx0n3s9h4/image/upload";
   //   return `${baseUrl}/${effect}/${publicId}`;
@@ -241,10 +250,14 @@ const handleWriteObituary = async () => {
                         onChange={(event)=>{handleFileChange(event)}}
                       ></input>
                       <label htmlFor="file" id="choose-image">
-                      <div id = "select-image">
-                        <i className="gg-add"></i>Select an Image for the Deceased
-                      </div> 
+                        <div id="select-image">
+                          <i className="select-image-icon">
+                            <RiAddCircleLine />
+                          </i>
+                          Select an Image for the Deceased
+                        </div>
                       </label>
+
                       <span>{selectedFile && `Selected file: ${selectedFileName}`}</span>
                     </div>
                 <div className = "popup-contents-main">

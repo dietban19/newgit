@@ -133,6 +133,9 @@ button {
 
 }
 
+body.popup-open {
+  overflow: hidden;
+}
 .blur-background {
   position: fixed;
   top: 0;
@@ -141,7 +144,9 @@ button {
   height: 100%;
   z-index: 9998;
   background-color: rgba(255, 253, 253, 0.922);
+  overflow:hidden;
 }
+
 .popup {
   position: fixed;
   top:0; 
@@ -182,7 +187,7 @@ button {
 }
 #select-image{
   display: flex;
-  gap: 20px;
+  gap:12px;
   color: #616060;
 }
 
@@ -216,7 +221,8 @@ button {
   }
 .popup-container{
 
-
+  overflow-y: auto;
+  height: calc(100% - 50px);
   padding: 20px;
   z-index: 10000;
   position: fixed;
@@ -424,7 +430,8 @@ button {
 
 
   .popup-container{
-
+    overflow-y: auto;
+    height: calc(100% - 50px);
     position: fixed;
     top: calc(50% + 60px);
     left: 50%;
