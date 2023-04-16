@@ -69,22 +69,6 @@ body {
   margin-top:5px;
 }
 
-header {
-  background-color: #6d9967;
-  display: flex;
-  justify-content: space-between;
-  border-bottom: 1px solid #6d9967;
-  padding: 10px 20px;
-  margin-bottom: 20px;
-  /* background-color: #f9f9f9; */
-  border-radius: 10px;
-}
-
-header aside {
-  display: flex;
-  flex: 0 1 10%;
-  justify-content: flex-start;
-}
 
 #add-button {
   margin: 10px;
@@ -214,13 +198,57 @@ body.popup-open {
 }
 
 
+
 @media screen and (min-width:441px){
+  header {
+    background-color: #6d9967;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #6d9967;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    /* background-color: #f9f9f9; */
+    border-radius: 10px;
+  }
+  
+  header aside {
+    display: flex;
+    flex: 0 1 10%;
+    justify-content: flex-start;
+  }
+  
+  .main-loading{
+    position: fixed;
+    top: 50%;
+    left: 47.5%;
+    transform: translate(-50%, -50%);
+    width: 90px;
+    height: 90px;
+    border: 15px solid rgb(176, 226, 185);
+    border-top-color: #477341;
+    border-radius: 50%;
+    background-color: rgba(210, 237, 204, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    animation: load 0.75s ease infinite;
+  }
+  @keyframes load{
+    from{
+      transform: rotate(0turn);
+    }
+    to{
+      transform: rotate(1turn);
+    }
+  }
   #popup-top{
     display: flex;
     margin:80px;
   }
   #popup-top button{
     font-size: 24px;
+    position: fixed;
     margin: 0 20px;
     padding: 10px 20px;
     background-color: #008eed;
@@ -240,9 +268,9 @@ body.popup-open {
     margin:80px;
   }
 .popup-container{
-
+  
   overflow-y: auto;
-  height: calc(100% - 50px);
+  /* height: calc(100% - 50px); */
   padding: 20px;
   z-index: 10000;
   position: fixed;
@@ -272,7 +300,6 @@ body.popup-open {
   
 }
 .popup-bottom #popup-button{
- 
   display: flex;
   justify-content: center;
   align-items: flex-end;
@@ -282,6 +309,8 @@ body.popup-open {
 #popup-button button{
   height: 80px;
   width: 100%;
+  position: relative;
+
 }
 #date-container{
 
@@ -294,6 +323,20 @@ body.popup-open {
   font-size: 35px;
   width: 800px;
   margin: 10px;
+}
+.popup-loading{
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  border: 15px solid #ccc;
+  border-top-color: #0a82ff;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.8);
+  display: flex;
+  bottom: 20%;
+  left: 47%;
+  z-index: 10001;
+  animation: load 0.75s ease infinite;
 }
 }
 
@@ -352,6 +395,7 @@ body.popup-open {
 }
 
 .obi-item {
+  background-color: rgb(167, 220, 173);
   width: 400px;
   display: flex;
   flex-direction: column;
@@ -396,7 +440,6 @@ body.popup-open {
 }
 
 .description-container{
-  outline: 1px solid red;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -409,25 +452,70 @@ body.popup-open {
   gap: 14px;
   padding: 20px;
 }
+button{
+  background-color: transparent;
+  border: none;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: #0a82ff;
+
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
+}
+
 
 @media screen and (max-width: 440px) {
-
-
-
-
-  button{
-    background-color: transparent;
-    border: none;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    color: #0a82ff;
-  
-    cursor: pointer;
-    padding: 0;
-    margin: 0;
-    display: inline-block;
-    vertical-align: middle;
-    line-height: normal;
+  header {
+    background-color: #6d9967;
+    display: flex;
+    /* justify-content: space-between; */
+    border-bottom: 1px solid #6d9967;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    /* background-color: #f9f9f9; */
+    border-radius: 10px;
   }
+    .popup-loading{
+      position: fixed;
+      width: 90px;
+      height: 90px;
+      border: 15px solid #ccc;
+      border-top-color: #0a82ff;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.8);
+      display: flex;
+      top: 50%;
+      left: 35%;
+      z-index: 10001;
+      animation: load 0.75s ease infinite;
+    }
+    .main-loading{
+      position: fixed;
+      width: 90px;
+      height: 90px;
+      border: 15px solid #ccc;
+      border-top-color: red;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.8);
+      display: flex;
+      top: 50%;
+      left: 35%;
+      z-index: 9999;
+      animation: load 0.75s ease infinite;
+
+    }
+    @keyframes load{
+      from{
+        transform: rotate(0turn);
+      }
+      to{
+        transform: rotate(1turn);
+      }
+    }
+
   #date-container {
     display: flex;
     flex-direction: column;
@@ -482,16 +570,12 @@ body.popup-open {
     color: white;
     font-size: 1.2rem;
     text-align: center;
-
     letter-spacing: 1px;
     cursor: pointer;
     transition: background-color 0.3s ease;
   }
-  #popup-button button:hover {
-    background-color: #0071ff;
-  }
-  #date-container{
 
+  #date-container{
     padding: 10px;
   }
   #input-name{
@@ -504,61 +588,4 @@ body.popup-open {
     font-size: 35px;
     
   }
-
-
-  
-}
-footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 100px;
-  border-top: 1px solid black;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-footer table{
-  display: flex;
-}
-footer table th{
-  margin-top: 10px;
-  display: flex;
-  align-items: center;
-}
-
-footer table tr{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 15px;
-}
-
-footer .col-2{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-footer h4 {
-  color: #333;
-  margin-bottom: 20px;
-  font-weight: 600;
-}
-
-footer p {
-  color: #666;
-  line-height: 1.6;
-  font-size: 16px;
-  margin-bottom: 10px;
-}
-
-
-footer p.copyright {
-  margin-top: 30px;
-  color: #666;
-  font-size: 14px;
-  text-align: center;
-  display: flex;
-  justify-content: center;
 }

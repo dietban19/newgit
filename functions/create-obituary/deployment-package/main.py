@@ -160,6 +160,8 @@ def lambda_handler(event, context):
         deviceID = str(fields['deviceID'])
         myID= str(fields['id'])
         myName = fields['name']
+        birthDate = fields['birthDate']
+        deathDate = fields['deathDate']
         print(fields)
 
         image = fields['image"; file']
@@ -188,8 +190,11 @@ def lambda_handler(event, context):
                 'deviceID' : deviceID,
                 'id': myID,
                 'name': myName,
+                'birthDate' : birthDate,
+                'deathDate' : deathDate,
                 'description': myDescription,
-                'image_url': response['secure_url'],
+                'image': response['secure_url'],
+                "audio" : myFile['secure_url']
             })
         print("AFTER")
 
