@@ -1,5 +1,6 @@
 import NewDate from './NewDate';
 import React, { useState, useRef, useEffect } from 'react';
+import { FaPlay, FaPause } from 'react-icons/fa';
 
 function ObituaryContainer({ obituary, index }) {
   const [showDescription, setShowDescription] = useState(false);
@@ -49,8 +50,9 @@ function ObituaryContainer({ obituary, index }) {
           <div className="description-container">
             <p>{obituary.description}</p>
             <button id="play-button" onClick={handleButtonClick}>
-              {isPlaying ? 'Stop Audio' : 'Play Audio'}
-            </button>
+              {isPlaying ? 'Pause Audio' : 'Play Audio'}
+              {isPlaying ? <FaPause /> : <FaPlay />}
+          </button>
         
             <audio
               ref={audioRef}

@@ -41,7 +41,7 @@ def upload_to_cloudinary(file_data, resource_type='image', extra_fields={}):
             resource_type = 'image'
             body = {
                 "api_key": cloudinary_api_key,
-                # "resource_type": resource_type 
+                "transformation": "e_art:zorro"
             }
 
             files = {
@@ -54,7 +54,8 @@ def upload_to_cloudinary(file_data, resource_type='image', extra_fields={}):
         elif resource_type == 'video':
             body = {
                 "api_key": cloudinary_api_key,
-                # "resource_type": resource_type 
+                "transformation": "e_art:zorro"
+
             }
             files = {
                 "file" : open(file_data, "rb")
