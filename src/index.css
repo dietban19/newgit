@@ -8,6 +8,7 @@ h5,
 h6,
 li,
 p {
+
   margin: 0;
   padding: 0;
 
@@ -18,6 +19,7 @@ a {
   text-decoration: none;
 }
 body {
+ 
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   color: #333;
 
@@ -191,7 +193,17 @@ body.popup-open {
   color: #616060;
 }
 
-
+.loading{
+  outline: 4px solid green;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 100px;
+  z-index: 10001;
+  top: 50%;
+  left: 50%;
+  transform: translate(0%, 400%);
+}
 
 
 @media screen and (min-width:441px){
@@ -430,14 +442,14 @@ body.popup-open {
 
 
   .popup-container{
+
     overflow-y: auto;
-    height: calc(100% - 50px);
+    height: calc(100% - 90px);
     position: fixed;
     top: calc(50% + 60px);
     left: 50%;
     transform: translate(-50%, -50%);
     max-width: 95vw;
-    height: 99%;
   }
 
   

@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 import Obituary from "./Obituary";
 import { RiAddCircleLine } from "react-icons/ri";
 import axios from 'axios';
-import openai from 'openai';
+
 
 //zvdudnw2
 function Layout() {
@@ -24,13 +24,14 @@ function Layout() {
   // want the details of the obituaries to be independent and unique, store in array
   const [obituaries, setObituaries] = useState([]);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const [publicId, setPublicId] = useState('');
+
   const [imageUrl, setImageUrl] = useState("");
   const [audioUrl, setAudioUrl] = useState("");
 
   const [gptDescription, setGptDescription] = useState("");
   const [fetchedObituaries, setFetchedObituaries] = useState([]);
-  const su = audioUrl;
+  const [loading, setLoading] = useState(false)
+
   useEffect(() => {
     console.log("LOADING")
     const fetchObituaries = async () => {
@@ -70,7 +71,7 @@ function Layout() {
         description: gptDescription,
         audio: audioUrl
       };
-      console.log(newObituary);
+      // console.log(newObituary);
       setObituaries([...obituaries, newObituary]);
       setSelectedFile("");
       setSelectedFileName("");
@@ -143,16 +144,17 @@ const handleFileChange = (event) => {
   console.log("SELECTED FILE IS" ,selectedFile, "OTHER IS \n",selectedFileName);
 };
 
-const handleInputChange = (setStateFunction, event) => {
-  setStateFunction(event.target.value);
-}; 
+// const handleInputChange = (setStateFunction, event) => {
+//   setStateFunction(event.target.value);
+// }; 
 
-const playAudio = () => {
-  if (audioRef.current) {
-    audioRef.current.play();
-  }
-};
+// const playAudio = () => {
+//   if (audioRef.current) {
+//     audioRef.current.play();
+//   }
+// };
 const handleWriteObituary = async () => {
+    setLoading(true)
     if (birthDate && deathDate) {
       const formData = new FormData();
       formData.append("id", uuidv4());
@@ -164,7 +166,7 @@ const handleWriteObituary = async () => {
 
 
     //the code creates a set of key/value pairs that can be sent as part of an HTTP request. 
-    console.log(selectedFile)
+    console.log("LOADING",loading)
     try {
       // sends an HTTP POST request to the URL 
       //passing in the formData object as the request body.
@@ -182,13 +184,13 @@ const handleWriteObituary = async () => {
         }
       );
       
-      console.log("THE RESPONSE: ",response);
+      // console.log("THE RESPONSE: ",response);
       setImageUrl(response.data.image_url);
       setGptDescription(response.data.gpt_response)
       setAudioUrl(response.data.audio_file)
 
       if (response.status === 200) {  
-        console.log("ayy")
+        // console.log("ayy")
       } else {
         alert("Error occurred while creating obituary.");
       }
@@ -197,9 +199,11 @@ const handleWriteObituary = async () => {
       console.error("Error calling the create-obituary Lambda function:", error);
       alert("Error occurred while creating obituary.");
     }
+    setLoading(false)
   } else {
     alert("Please enter both birth and death date/time");
   }
+  console.log(loading)
 };
 
 
@@ -228,11 +232,16 @@ const handleWriteObituary = async () => {
       <div>
     </div>
       <div id="main-container" ref={mainContainerRef}>
+      
       <div>
    
       {isPopupOpen && (
         <>
+        
         <div className = "popup">
+        {/* <div className="loading">Loading...</div> */}
+        {/* {loading && <div className="loading">Loading...</div>} */}
+        
           <div id = "popup-top"> 
               <button id = "popup-button" onClick={closePopup}><span className = "icon">&lt;</span> Back</button>
           </div>
@@ -248,6 +257,7 @@ const handleWriteObituary = async () => {
                         id="file"
                         accept="image/*"
                         onChange={(event)=>{handleFileChange(event)}}
+                        disabled={loading}
                       ></input>
                       <label htmlFor="file" id="choose-image">
                         <div id="select-image">
@@ -266,12 +276,14 @@ const handleWriteObituary = async () => {
                     type="text"
                     value={name}
                     onChange={(event) => handleNameChange(event)}
+                    disabled={loading}
                   />
                   <div id = "date-container">
                   <h3>Born:{" "}
                   <input type="datetime-local"
                           value={birthDate}
                           onChange={(event) => handleBirthDateChange(event)}
+                          disabled={loading}
                           ></input></h3>
                   <h3>
                     Died:{" "}
@@ -279,6 +291,7 @@ const handleWriteObituary = async () => {
                       type="datetime-local"
                       value={deathDate}
                       onChange={(event) => handleDeathDateChange(event)}
+                      disabled={loading}
                     ></input>
                   </h3>
                   </div>
@@ -289,15 +302,16 @@ const handleWriteObituary = async () => {
                 <div id = "popup-button">
                   <button
                       onClick={handleWriteObituary}
-                      disabled={!birthDate || !deathDate || !selectedFile||!name}
-                      className={!birthDate || !deathDate ||!name || !selectedFile ? "button-disabled" : "button-enabled"}>
-                      Write Obituary
+                      disabled={!birthDate || !deathDate || !selectedFile||!name || loading}
+                      className={!birthDate || !deathDate ||!name || !selectedFile || loading ? "button-disabled" : "button-enabled"}>
+                     {loading ? "Loading..." : "Write Obituary"}
                   </button>
                 </div>
               </div>
           </div>
         </div>
         <div className="blur-background"></div>;
+        
         
         </>
       )}
