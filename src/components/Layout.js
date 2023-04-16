@@ -39,7 +39,7 @@ function Layout() {
         const response = await fetch("https://oluenjzsd7mpt6f2mp2qoam7xe0rjhkh.lambda-url.ca-central-1.on.aws/", {
           method: "GET",
           headers: {
-            // "Content-Type": "multipart/form-data",
+            "Content-Type": "application/json",
             // "authorization": user.access_token, // Uncomment this if you need to pass an access token
           },
         });
@@ -59,7 +59,7 @@ function Layout() {
 
     fetchObituaries();
   }, []); // Add any dependencies as needed
-
+  console.log(fetchedObituaries)
   useEffect(() => {
     if (imageUrl && gptDescription && audioUrl) {
       const newObituary = {
