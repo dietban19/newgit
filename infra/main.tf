@@ -22,9 +22,14 @@ resource "aws_dynamodb_table" "obituaries-30120286" {
 
   # we only need a student id to find an item in the table; therefore, we 
   # don't need a sort key here
-  hash_key = "id"
+  hash_key = "deviceID"
+  range_key = "id"
 
   # the hash_key data type is string
+  attribute {
+    name =  "deviceID"
+    type =   "S"
+  }
   attribute {
     name =  "id"
     type =   "S"

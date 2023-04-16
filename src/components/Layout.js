@@ -75,8 +75,8 @@ function Layout() {
   useEffect(() => {
     if (imageUrl && gptDescription && audioUrl) {
       const newObituary = {
+        deviceID : deviceId,
         id: uuidv4(),
-
         name: name,
         image: imageUrl, // Use the transformed image URL
         birthDate: birthDate,
@@ -170,7 +170,8 @@ const handleWriteObituary = async () => {
     setLoading(true)
     if (birthDate && deathDate) {
       const formData = new FormData();
-      formData.append("id", uuidv4());
+      formData.append("deviceID", deviceId); // partition key
+      formData.append("id", uuidv4()); // sort key
       formData.append("name", name);
       formData.append("image", selectedFile);
       formData.append("birthDate", birthDate);

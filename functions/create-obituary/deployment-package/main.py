@@ -157,11 +157,10 @@ def lambda_handler(event, context):
                     fields[name] = part.content  # Image data
                 else:
                     fields[name] = part.text  # Other fields
+        deviceID = str(fields['deviceID'])
         myID= str(fields['id'])
-        
         myName = fields['name']
-        
-        # myDescription = fields['description']
+        print(fields)
 
         image = fields['image"; file']
         response = upload_to_cloudinary(image)
@@ -186,11 +185,11 @@ def lambda_handler(event, context):
         
         table.put_item(
             Item = { 
+                'deviceID' : deviceID,
                 'id': myID,
                 'name': myName,
                 'description': myDescription,
                 'image_url': response['secure_url'],
-                'timestamp': str(timestamp),
             })
         print("AFTER")
 
