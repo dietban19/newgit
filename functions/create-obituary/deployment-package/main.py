@@ -182,6 +182,8 @@ def lambda_handler(event, context):
         print(myFile)
 
         
+        
+        
         table.put_item(
             Item = { 
                 'id': myID,

@@ -31,12 +31,23 @@ function Layout() {
   const [gptDescription, setGptDescription] = useState("");
   const [fetchedObituaries, setFetchedObituaries] = useState([]);
   const [loading, setLoading] = useState(false)
+  const getDeviceId = () => {
+    let deviceId = localStorage.getItem("deviceId");
+    if (!deviceId) {
+      deviceId = uuidv4();
+      localStorage.setItem("deviceId", deviceId);
+    }
+    return deviceId;
+  };
+  
+  const deviceId = getDeviceId();
 
+  
   useEffect(() => {
     console.log("LOADING")
     const fetchObituaries = async () => {
       try {
-        const response = await fetch("https://oluenjzsd7mpt6f2mp2qoam7xe0rjhkh.lambda-url.ca-central-1.on.aws/", {
+        const response = await fetch(`https://oluenjzsd7mpt6f2mp2qoam7xe0rjhkh.lambda-url.ca-central-1.on.aws/${deviceId}`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -59,11 +70,13 @@ function Layout() {
 
     fetchObituaries();
   }, []); // Add any dependencies as needed
+  
   console.log(fetchedObituaries)
   useEffect(() => {
     if (imageUrl && gptDescription && audioUrl) {
       const newObituary = {
         id: uuidv4(),
+
         name: name,
         image: imageUrl, // Use the transformed image URL
         birthDate: birthDate,
@@ -151,7 +164,7 @@ const handleFileChange = (event) => {
 // const playAudio = () => {
 //   if (audioRef.current) {
 //     audioRef.current.play();
-//   }
+//   }a
 // };
 const handleWriteObituary = async () => {
     setLoading(true)
