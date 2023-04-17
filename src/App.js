@@ -1,11 +1,19 @@
 import { Route, Routes } from "react-router-dom";
-import {useState} from 'react'
+import {useState, useHistory} from 'react'
 import Empty from "./components/Empty";
 import Layout from "./components/Layout";
 import Obituary from "./components/Obituary";
 
 function App() {
   const [obituaries, setObituaries] = useState([]);
+  // const history = useHistory();
+
+  // useEffect(() => {
+  //   const path = window.location.pathname;
+  //   if (path === "/obituaries") {
+  //     history.push("/");
+  //   }
+  // }, [history]);
   return (
     <Routes>
       <Route

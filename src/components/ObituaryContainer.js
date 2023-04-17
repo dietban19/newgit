@@ -1,8 +1,8 @@
 import NewDate from './NewDate';
 import React, { useState, useRef, useEffect } from 'react';
-import { FaPlay, FaPause } from 'react-icons/fa';
+import { FaPlay, FaPause,FaTrash } from 'react-icons/fa';
 
-function ObituaryContainer({ obituary, index }) {
+function ObituaryContainer({ obituary, index, onDelete }) {
   const [showDescription, setShowDescription] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef(null);
@@ -30,6 +30,11 @@ function ObituaryContainer({ obituary, index }) {
       audioRef.current.play();
     }
   };
+  const handleDeleteClick = (event) => {
+    event.stopPropagation();
+    console.log("delete")
+    onDelete();
+  };
 
   return (
     <div
@@ -53,7 +58,10 @@ function ObituaryContainer({ obituary, index }) {
               {isPlaying ? 'Pause Audio' : 'Play Audio'}
               {isPlaying ? <FaPause /> : <FaPlay />}
           </button>
-        
+          <button id="delete-button" onClick={handleDeleteClick}>
+              Delete
+              <FaTrash />
+            </button>
             <audio
               ref={audioRef}
               src={obituary.audio}
