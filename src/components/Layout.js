@@ -77,7 +77,7 @@ function Layout() {
 
     fetchObituaries();
   }, []);
-
+  console.log(fetchedObituaries)
 
   /**
    * useEffect that checks if the values for imageUrl, gptDescription, and audioUrl exists

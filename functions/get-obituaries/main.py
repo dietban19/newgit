@@ -7,10 +7,15 @@ table = dynamodb.Table("obituaries-30120286")
 def lambda_handler(event, context):
     try:
         # Fetch all obituaries from the DynamoDB table
-        response = table.scan()
+        device_id = event["rawPath"].split("/")[-1]
+        print(device_id)
+        response = table.query(
+            KeyConditionExpression='deviceID = :deviceId',
+            ExpressionAttributeValues={
+                ':deviceId': device_id
+            }
+        )
         obituaries = response["Items"]
-
-        # Return the obituaries as a JSON response
         return {
             "statusCode": 200,
             "body": json.dumps(obituaries),
